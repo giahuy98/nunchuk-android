@@ -44,7 +44,7 @@ jobs:
       - name: Build app
         working-directory: ${{ github.workspace }}
         run: |
-          docker run --rm -v "$(pwd)":/app-src --device /dev/fuse --cap-add SYS_ADMIN nunchuk-android bash -c "mkdir /app; disorderfs --sort-dirents=yes --reverse-dirents=no /app-src/ /app/; cd /app && ./gradlew clean bundleProductionRelease"
+          docker run --rm -v "$(pwd)":/app-src --device /dev/fuse --cap-add SYS_ADMIN ghcr.io/${{ github.repository }}/nunchuk-android bash -c "mkdir /app; disorderfs --sort-dirents=yes --reverse-dirents=no /app-src/ /app/; cd /app && ./gradlew clean bundleProductionRelease"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
